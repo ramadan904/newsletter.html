@@ -1,9 +1,42 @@
-# newsletter.html
+# Devpost Weekly
 
-Devpost Weekly — a standalone, responsive HTML newsletter.
+A responsive newsletter site, set up as a **Lovable-compatible** project:
+Vite + React + TypeScript + Tailwind CSS + shadcn/ui conventions.
 
-- **`index.html`** — the full issue. Single file, no build step, no dependencies.
-  Open it in a browser or serve the directory (`python3 -m http.server`).
+## Use it with Lovable
+
+1. Push this repo to GitHub (it's already there).
+2. In Lovable, create a project from / connect it to this GitHub repository.
+   Lovable syncs both ways: edits in Lovable are committed here, and commits
+   pushed here show up in Lovable.
+3. Ask Lovable for changes in plain language, e.g. *"add a Sponsors section
+   under Featured Hackathons"*.
+
+## Run locally
+
+```sh
+npm install
+npm run dev        # http://localhost:8080
+npm run build      # production build to dist/
+npm run lint
+npm run typecheck
+```
+
+## Project layout
+
+```
+index.html                      Vite entry (theme applied before first paint)
+src/
+  data/issue.ts                 All issue content — edit this to publish a new issue
+  pages/Index.tsx               The newsletter page
+  components/newsletter/        Section, Card, Badge, CtaLink, Winner/Program/Hackathon cards
+  components/ThemeToggle.tsx    Light/dark toggle (remembers choice, defaults to system)
+  index.css                     Design tokens (HSL CSS variables, light + .dark)
+  lib/utils.ts                  cn() helper used by shadcn/ui
+tailwind.config.ts              Maps tokens to Tailwind colors (primary, gold, urgent, faint…)
+components.json                 shadcn/ui config — `npx shadcn@latest add button` works
+email/newsletter.html           Original single-file HTML version, for email sends
+```
 
 ## Current issue
 
@@ -12,19 +45,13 @@ the Nebius AI Builder Program, and five open hackathons.
 
 ## Before sending
 
-Every placeholder link is marked with `data-todo="link"` and currently points at a
-generic Devpost page. Find them with:
+Placeholder links are flagged `todo: true` in `src/data/issue.ts` (rendered with
+`data-todo="link"`), and marked `data-todo="link"` in `email/newsletter.html`.
+They currently point at generic Devpost pages. Find them with:
 
 ```sh
-grep -n 'data-todo="link"' index.html
+grep -n 'todo: true' src/data/issue.ts
+grep -n 'data-todo="link"' email/newsletter.html
 ```
 
-Replace each `href` with the real project or registration URL, then drop the
-`data-todo` attribute.
-
-## Notes
-
-- Light and dark themes both ship; dark follows `prefers-color-scheme` and can be
-  forced with `<html data-theme="dark">`.
-- Layout is fluid down to phone width. All colors are CSS custom properties on
-  `:root`, so re-theming is a one-block edit.
+Replace each `href` with the real project or registration URL, then drop the flag.

@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Design tokens. Values mirror the palette of the standalone email
+  (email/newsletter.html). All colors are HSL triplets consumed by
+  tailwind.config.ts as hsl(var(--token)).
+*/
+@layer base {
+  :root {
+    --background: 220 18% 97%;
+    --foreground: 223 14% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 223 14% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 223 14% 10%;
+
+    --primary: 228 68% 54%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 227 70% 95%;
+
+    --secondary: 220 25% 95%;
+    --secondary-foreground: 223 14% 10%;
+    --muted: 220 25% 95%;
+    --muted-foreground: 222 11% 40%;
+    --faint: 224 12% 58%;
+    --accent: 227 70% 95%;
+    --accent-foreground: 228 68% 54%;
+
+    --destructive: 10 68% 38%;
+    --destructive-foreground: 0 0% 100%;
+    --gold: 44 77% 31%;
+    --gold-soft: 44 81% 92%;
+    --urgent: 10 68% 38%;
+    --urgent-soft: 12 86% 94%;
+
+    --border: 222 19% 90%;
+    --input: 222 19% 90%;
+    --ring: 228 68% 54%;
+    --radius: 14px;
+  }
+
+  .dark {
+    --background: 223 21% 6%;
+    --foreground: 223 23% 94%;
+    --card: 222 20% 10%;
+    --card-foreground: 223 23% 94%;
+    --popover: 222 20% 10%;
+    --popover-foreground: 223 23% 94%;
+
+    --primary: 227 100% 77%;
+    --primary-foreground: 223 21% 6%;
+    --primary-soft: 228 34% 17%;
+
+    --secondary: 222 19% 13%;
+    --secondary-foreground: 223 23% 94%;
+    --muted: 222 19% 13%;
+    --muted-foreground: 221 14% 68%;
+    --faint: 222 9% 51%;
+    --accent: 228 34% 17%;
+    --accent-foreground: 227 100% 77%;
+
+    --destructive: 11 100% 76%;
+    --destructive-foreground: 223 21% 6%;
+    --gold: 43 69% 64%;
+    --gold-soft: 44 38% 12%;
+    --urgent: 11 100% 76%;
+    --urgent-soft: 10 40% 14%;
+
+    --border: 221 17% 18%;
+    --input: 221 17% 18%;
+    --ring: 227 100% 77%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    line-height: 1.6;
+  }
+}
